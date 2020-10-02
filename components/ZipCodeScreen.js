@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, FlatList, TouchableHighlight, Button } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, Button,ImageBackground,StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const availableZipItems = [
@@ -13,9 +13,9 @@ const availableZipItems = [
 
 const ZipItem = ({ place, code, navigation }) => (
     <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code })}>
-        <View style={{ borderColor: 'red', borderWidth: 3 }}>
-            <Text>{place}</Text>
-            <Text>{code}</Text>
+        <View style = {styles.text1}>
+            <Text style = {styles.text1}>{place}</Text>
+            <Text style = {styles.text2}>{code}</Text>
         </View>
     </TouchableHighlight>
 )
@@ -26,15 +26,42 @@ export default function ZipCodeScreen() {
     const navigation = useNavigation()
     return (
         <View>
-            
+            <ImageBackground source={require('./bg2.jpg')} style={styles.backdrop}>
+            <Button title = "PRESSME" color = "red" onPress={() => navigation.navigate('Picture')}/>
             <FlatList
                 data={availableZipItems}
                 keyExtractor={_keyExtractor}
                 renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
             />
             <StatusBar style="auto" />
-            <Button title = "PRESSME" onPress={() => navigation.navigate('Picture')}/>
+            
+            
+            </ImageBackground>
         </View>
     );
 
 }
+const styles = StyleSheet.create({
+    backdrop: {
+        alignItems: 'center',
+
+        width: '100%',
+        height: '100%'
+    },
+    text1:{ 
+        marginVertical: 'auto',       
+        height: 'auto',        
+        width: 'auto',
+        color: 'white',
+        fontSize: 50,
+        backgroundColor: 'black',
+    },
+    text2:{    
+        marginVertical: 'auto',
+        height: 'auto',        
+        width: 'auto',
+        color: 'white',
+        fontSize: 30,
+        backgroundColor: 'black',
+    },
+});
