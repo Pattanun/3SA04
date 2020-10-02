@@ -1,23 +1,21 @@
-//6135512002
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Weather from './components/Weather'
 import WeatherScreen from './components/WeatherScreen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ZipCodeScreen from './components/ZipCodeScreen';
+import newpage from './components/newpage';
 
 const Stack = createStackNavigator();
 
-// create a component
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={ZipCodeScreen} />
         <Stack.Screen name="Weather" component={WeatherScreen} />
-      </Stack.Navigator> 
+        <Stack.Screen name="Picture" component={newpage} />
+    </Stack.Navigator> 
     </NavigationContainer>       
   );
 };
